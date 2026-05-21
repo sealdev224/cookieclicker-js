@@ -1,8 +1,14 @@
 let cookie = document.getElementById("cookie");
 let cookie_display = document.getElementById("cookieamount");
-let cookie_amount = 0;
+let savedata = JSON.parse(localStorage.getItem("save")) || {
+    cookies: 0
+};
+
+cookie_display.innerHTML = `Cookies: ${savedata.cookies}`;
 
 function addcookie() {
-    cookie_amount += 1;
-    cookie_display.innerHTML = `Cookies: ${cookie_amount}`;
+    savedata.cookies += 1;
+    cookie_display.innerHTML = `Cookies: ${savedata.cookies}`;
+
+    localStorage.setItem("save", JSON.stringify(savedata));
 }
